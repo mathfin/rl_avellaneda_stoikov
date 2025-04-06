@@ -1,0 +1,12 @@
+.env
+
+.idea/*
+*__pycache__/*
+*/__pycache__/*
+*.log
+webhook_cert.pem
+webhook_pkey.pem
+bot.conf
+*venv
+
+*trades_data.csv
