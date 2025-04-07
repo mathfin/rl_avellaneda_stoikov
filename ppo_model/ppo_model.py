@@ -23,6 +23,9 @@ class ActorCritic(nn.Module):
             nn.ReLU()
         )
 
+        # Инициализация весов последнего слоя (около 0) и bias около 1
+        nn.init.normal_(self.actor[-2].weight, mean=0.0, std=1e-2)
+        nn.init.constant_(self.actor[-2].bias, 1.0)
 
         # critic
         self.critic = nn.Sequential(

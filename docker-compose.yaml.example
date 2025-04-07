@@ -1,0 +1,41 @@
+services:
+
+  db_postgres:
+    image: ankane/pgvector:latest
+    container_name: database
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: mydb
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypass
+    volumes:
+      - ./pg_data:/var/lib/postgresql/data
+    networks:
+      - overnight
+
+  mm_model:
+    image: mm_model
+    container_name: mm_model
+    build:
+      context: ./
+    command: python3 -u main.py
+    env_file:
+      - './.env'
+    depends_on:
+      - db_postgres
+    volumes:
+      - ./data:/app/data
+    networks:
+      - overnight
+
+
+volumes:
+  pg_data:
+    name: pg_data
+
+
+networks:
+  overnight:
+    name: overnight
+

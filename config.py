@@ -11,13 +11,18 @@ BINANCE_API_SECRET=getenv('binance_api_secret')
 
 SEED = 777
 
+# Раз в 50 секунд обновляются параметры gamma и k моделью ppo,
+# а моделью avellaneda stoikov раз в 2 секунды выставляют новые ордера и смотрят нет ли выполненных
+
 T = 50000
 TICKRATE = 25
-SIMULATION_PERIODS = 36
+
+SIMULATION_PERIODS = 623 # (max(timestamp) - min(timestamp)) / T
 WINDOW = 100
 
 update_timestep = 12
-
+action_std_decay_rate = 0.1
+min_action_std = 0.05
 
 device = torch.device('cpu')
 

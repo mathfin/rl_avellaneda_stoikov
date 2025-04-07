@@ -9,4 +9,6 @@ webhook_pkey.pem
 bot.conf
 *venv
 
-*trades_data.csv
+*.csv
+docker-compose.yaml
+*pg_data*

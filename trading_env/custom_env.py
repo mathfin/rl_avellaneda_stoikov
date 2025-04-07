@@ -51,6 +51,8 @@ class CustomEnvironment:
 
             self.full_history.append({
                 'mm_agent_num': self.simulation_counter,
+                'gamma': gamma,
+                'k': k,
                 't': t,
                 'timestamp': self.last_timestamp,
                 'datashape': datashape,
