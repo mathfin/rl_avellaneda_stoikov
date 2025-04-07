@@ -12,6 +12,7 @@ class Base(DeclarativeBase):
 class TradesData(Base):
     __tablename__ = 'trades_data'
 
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     price: Mapped[float] = mapped_column(nullable=False)
     qty: Mapped[float] = mapped_column(nullable=False)
     timestamp: Mapped[float] = mapped_column(nullable=False)

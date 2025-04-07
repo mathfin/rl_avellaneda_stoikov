@@ -20,6 +20,7 @@ numpy==2.2.4
 pandas==2.2.3
 pillow==11.0.0
 propcache==0.3.1
+psycopg2-binary==2.9.10
 pycryptodome==3.22.0
 python-binance==1.0.28
 python-dateutil==2.9.0.post0

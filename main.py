@@ -5,7 +5,8 @@ from config import update_timestep, TICKRATE, T, SIMULATION_PERIODS, WINDOW, act
 from data_base.engine import engine, session_maker
 from data_base.models import Base, TradesData
 from data_collecion.data_collector import fetch_and_save_trades
-from pool import set_seed, ppo_agent
+from pool import set_seed
+from ppo_model.ppo_manager import PPO
 from trading_env.custom_env import CustomEnvironment
 
 set_seed()
@@ -71,6 +72,13 @@ if __name__ == '__main__':
     binance_data['time'] = pd.to_datetime(binance_data['timestamp'], unit='ms')
     binance_data = binance_data.sort_values('timestamp').reset_index(drop=True)
 
+    ppo_agent = PPO(state_dim=5,
+                    action_dim=2,
+                    lr_actor=0.0003,
+                    lr_critic=0.001,
+                    gamma=0.99,
+                    K_epochs=40,
+                    eps_clip=0.1)
 
     results_df = run_train(
         binance_data,
